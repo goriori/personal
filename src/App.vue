@@ -34,8 +34,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-screen h-screen p-5 text-white bg-black">
-    <div class="container mx-auto">
+  <div class="w-screen h-screen p-5 text-white bg-slate-300">
+    <div class="container mx-auto flex flex-col gap-5">
       <Header v-model="typeWorker" />
       <div>
         <DoctorListModule v-if="haveWorkers && typeWorker === 'doctor'" />

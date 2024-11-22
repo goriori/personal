@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, computed, watch, onUpdated } from "vue";
 import { TProps } from "./types.ts";
 
 const props = defineProps<TProps>();
 
 const isTargetAll = ref(false);
-const rows = ref();
-
-const initRows = () => {
+const rows = computed(() => {
   if (!props.data) return;
-  rows.value = props.data.map((row, index) => ({
-    id: index + 1,
+  return props.data.map((row, index) => ({
+    id: row[0],
     target: false,
     values: row,
   }));
-};
+});
 
 const toggleTargetAll = () => {
   isTargetAll.value = !isTargetAll.value;
@@ -22,10 +20,6 @@ const toggleTargetAll = () => {
 
 watch(isTargetAll, (newValue, oldValue) => {
   rows.value.forEach((row) => (row.target = newValue));
-});
-
-onMounted(() => {
-  initRows();
 });
 </script>
 
@@ -72,11 +66,11 @@ onMounted(() => {
             <div class="flex items-center">
               <input
                 v-model="row.target"
-                id="checkbox-table-search-1"
+                :id="`checkbox-table-search-${index}`"
                 type="checkbox"
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
-              <label for="checkbox-table-search-1" class="sr-only"
+              <label :for="`checkbox-table-search-${index}`" class="sr-only"
                 >checkbox</label
               >
             </div>
@@ -91,7 +85,12 @@ onMounted(() => {
             {{ item }}
           </td>
           <td v-if="actions.length > 0" class="flex items-center px-6 py-4">
-            <component v-for="action in actions" :key="action" :is="action" />
+            <component
+              v-for="action in actions"
+              :key="action"
+              :is="action"
+              :data-id="row.id"
+            />
           </td>
         </tr>
       </tbody>

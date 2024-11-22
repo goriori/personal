@@ -11,7 +11,7 @@ type ListStore = {
   workers: ListItem;
 };
 
-export const useListStore = defineStore("list", () => {
+export const useListStore = defineStore("lists", () => {
   const lists = ref<ListStore>({
     workers: {
       list: [],
