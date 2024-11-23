@@ -18,12 +18,12 @@ const initWorkers = async () => {
     if (index % 2 === 0)
       listStore.addItemToList(
         "workers",
-        new DoctorWorker(user.id, user.name, new Departament("Кардиология")),
+        new DoctorWorker(user.id, user.name, new Departament("Кардиология", 'cardiology')),
       );
     else
       listStore.addItemToList(
         "workers",
-        new NurseWorker(user.id, user.name, new Departament("Хирургия")),
+        new NurseWorker(user.id, user.name, new Departament("Хирургия", 'surgary')),
       );
   });
 };
