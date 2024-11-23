@@ -38,8 +38,8 @@ onMounted(async () => {
     <div class="container mx-auto flex flex-col gap-5">
       <Header v-model="typeWorker" />
       <div>
-        <DoctorListModule v-if="haveWorkers && typeWorker === 'doctor'" />
-        <NurseListModule v-if="haveWorkers && typeWorker === 'nurse' " />
+        <DoctorListModule v-if="typeWorker === 'doctor'" />
+        <NurseListModule v-if="typeWorker === 'nurse' " />
       </div>
     </div>
   </div>

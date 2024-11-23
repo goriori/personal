@@ -3,13 +3,13 @@ import { ref, computed, watch, onUpdated } from "vue";
 import { TProps } from "./types.ts";
 
 const props = defineProps<TProps>();
-
+console.log(props)
 const isTargetAll = ref(false);
 const rows = computed(() => {
   if (!props.data) return;
   return props.data.map((row, index) => ({
     id: row[0],
-    target: false,
+    target: isTargetAll.value,
     values: row,
   }));
 });
@@ -17,14 +17,10 @@ const rows = computed(() => {
 const toggleTargetAll = () => {
   isTargetAll.value = !isTargetAll.value;
 };
-
-watch(isTargetAll, (newValue, oldValue) => {
-  rows.value.forEach((row) => (row.target = newValue));
-});
 </script>
 
 <template>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col gap-5">
     <table
       class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
     >
@@ -95,5 +91,8 @@ watch(isTargetAll, (newValue, oldValue) => {
         </tr>
       </tbody>
     </table>
+    <div v-if="isTargetAll" class="table-actions w-full">
+      <component v-for="action in actionsForGroup" :key="action" :is="action" class="w-full"/>
+    </div>
   </div>
 </template>
