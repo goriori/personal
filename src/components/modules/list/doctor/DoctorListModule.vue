@@ -4,6 +4,7 @@ import Table from "../../../ui/table/Table.vue";
 import { useListStore } from "../../../../stores/list.store.ts";
 import DeleteWorkerFeature from "../../../../features/worker/delete/DeleteWorkerFeature.vue";
 import DeleteWorkerDoctorsFeature from "../../../../features/worker/delete/DeleteWorkerDoctorsFeature.vue";
+import EditWorkerFeature from '../../../../features/worker/edit/EditWorkerFeature.vue'
 const listStore = useListStore();
 const fields = ["#", "ФИО", "Учреждение"];
 const doctors = computed(() =>
@@ -26,7 +27,7 @@ const items = computed(() =>
       v-else
       :fields="fields"
       :data="items"
-      :actions="[DeleteWorkerFeature]"
+      :actions="[DeleteWorkerFeature, EditWorkerFeature]"
       :actionsForGroup="[DeleteWorkerDoctorsFeature]"
     />
   </div>

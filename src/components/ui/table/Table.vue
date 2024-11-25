@@ -80,7 +80,7 @@ const toggleTargetAll = () => {
           >
             {{ item }}
           </td>
-          <td v-if="actions.length > 0" class="flex items-center px-6 py-4">
+          <td v-if="actions.length > 0" class="flex gap-3 items-center px-6 py-4">
             <component
               v-for="action in actions"
               :key="action"
