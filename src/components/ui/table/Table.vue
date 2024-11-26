@@ -3,7 +3,6 @@ import { ref, computed, watch, onUpdated } from "vue";
 import { TProps } from "./types.ts";
 
 const props = defineProps<TProps>();
-console.log(props)
 const isTargetAll = ref(false);
 const rows = computed(() => {
   if (!props.data) return;
