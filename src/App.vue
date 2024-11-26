@@ -33,7 +33,6 @@ const initWorkers = async () => {
 
 onMounted(async () => {
   Promise.all([initWorkers()]);
-  setTimeout(()=> applicationStore.getModal('Edit-Worker')?.onShow(), 2000)
 });
 </script>
 
