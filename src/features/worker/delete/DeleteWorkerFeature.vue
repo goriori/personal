@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Button class="transition bg-red-800 hover:bg-red-900" @click="deleteWorker"
+  <Button class="transition bg-red-700 hover:bg-red-900 text-white" @click="deleteWorker"
     >Удалить</Button
   >
 </template>
